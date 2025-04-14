@@ -16,6 +16,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class GenAiResponse {
 
+
     @JsonProperty("caseId")
     private String caseId;
 
@@ -28,18 +29,8 @@ public class GenAiResponse {
     @JsonProperty("screeningHitId")
     private String screeningHitId;
 
-    @JsonProperty("hitUrl")
-    private HitUrl hitUrl;
-
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    public static class HitUrl {
-
-        @JsonProperty("hitId")
-        private String hitId;
+    @JsonProperty("hitId")
+    private String hitId;
 
         @JsonProperty("hitUrl")
         private String hitUrl;
@@ -90,6 +81,6 @@ public class GenAiResponse {
             @JsonProperty("justification")
             private String justification;
         }
-    }
+
 }
 

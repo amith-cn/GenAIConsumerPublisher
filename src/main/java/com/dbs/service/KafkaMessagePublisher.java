@@ -1,5 +1,6 @@
 package com.dbs.service;
 
+import com.imtf.dbs.namescreening.common.kafka.schema.GenAiResponseRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -13,7 +14,7 @@ public class KafkaMessagePublisher {
     @Autowired
     private KafkaTemplate<String,Object> template;
 
-    //recive all the message and
+    /*//recive all the message and
     public void sendMessageToTopic(String message){
         CompletableFuture<SendResult<String, Object>> future = template.send("topicB", message);
         future.whenComplete((result,ex)->{
@@ -57,4 +58,32 @@ public class KafkaMessagePublisher {
 
     }
 
+    public void sendGenAISchemaToTopic(String topicName, GenAiResponseRecord message){
+        CompletableFuture<SendResult<String, Object>> future = template.send(topicName, message);
+        future.whenComplete((result,ex)->{
+            if (ex == null) {
+                System.out.println("Sent Serialized message=[" + message +
+                        "] with offset=[" + result.getRecordMetadata().offset() + "]" +"to topic "+ topicName);
+            } else {
+                System.out.println("Unable to send message=[" +
+                        message + "] due to : " + ex.getMessage());
+            }
+        });
+
+    }*/
+
+
+    public void sendTestGenAISchemaToTopic(String topicName, GenAiResponseRecord message){
+        CompletableFuture<SendResult<String, Object>> future = template.send(topicName, message);
+        future.whenComplete((result,ex)->{
+            if (ex == null) {
+                System.out.println("Sent Serialized message=[" + message +
+                        "] with offset=[" + result.getRecordMetadata().offset() + "]" +"to topic "+ topicName);
+            } else {
+                System.out.println("Unable to send message=[" +
+                        message + "] due to : " + ex.getMessage());
+            }
+        });
+
+    }
 }
