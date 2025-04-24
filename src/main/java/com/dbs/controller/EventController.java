@@ -1,11 +1,14 @@
 package com.dbs.controller;
 
+import com.dbs.clconnbc.api.model.KafkaRequestAvro;
+import com.dbs.clconnbc.api.model.KafkaResponseAvro;
+import com.dbs.clconnbc.api.model.QualificationAvro;
 import com.dbs.model.GenAiResponse;
 import com.dbs.service.KafkaMessagePublisher;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
-import com.imtf.dbs.namescreening.common.kafka.schema.GenAiResponseQualification;
-import com.imtf.dbs.namescreening.common.kafka.schema.GenAiResponseRecord;
+import com.imtf.dbs.namescreening.common.kafka.schemaold.GenAiResponseQualification;
+import com.imtf.dbs.namescreening.common.kafka.schemaold.GenAiResponseRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -175,6 +178,7 @@ public class EventController {
                     .setGenAiSummary(response.getGenAiSummary())
                     .setErrorString(response.getErrorString())
                     .setIsQualificationGenerated(response.getIsQualificationGenerated())
+                    .setIsSummaryGenerated(response.getIsSummaryGenerated())
                     .setQualification(qualification2)
                     .build();
         }
@@ -182,5 +186,75 @@ public class EventController {
         return "Success";
     }
 
+    @PostMapping(value = "/{topicName}/publish")
+    public String sendGenAISchemaMessage(@PathVariable String topicName,@RequestBody GenAiResponse response) throws StreamWriteException, DatabindException, IOException {
+
+
+        String hitUrl= response.getHitUrl();
+        if(!hitUrl.equals("null")) {
+            String hitId = response.getHitId();
+            GenAiResponse.Qualification qualification = response.getQualification();
+            GenAiResponseQualification qualification2;
+            if(qualification!=null && response.getIsQualificationGenerated()) {
+                List reasonList = qualification.getReason();
+                if (reasonList != null) {
+                    for (int i = 0; i < reasonList.size(); i++) {
+                        System.out.println("Reason " + i + " : " + reasonList.get(i));
+                    }
+                }
+
+            }
+        }
+
+        KafkaResponseAvro msg = null;
+        if(response.getHitUrl()==null){
+            msg = KafkaResponseAvro.newBuilder()
+                    .setCaseId(response.getCaseId())
+                    .setPersonId(response.getPersonId())
+                    .setRiskcheckId(response.getRiskCheckId())
+                    .setScreeningHitId(response.getScreeningHitId())
+                    .setHitId(response.getHitId())
+                    .setHitUrl(response.getHitUrl())
+                    .setErrorString(response.getErrorString())
+                    .build();
+        }
+        else {
+            QualificationAvro qualification= new QualificationAvro();
+            if(response.getQualification()!=null && response.getIsQualificationGenerated()) {
+                List<String> reason = response.getQualification().getReason();
+                List<CharSequence> reasonList = new ArrayList<>();
+                if(reason!=null) {
+                    reasonList.addAll(reason);
+                }
+                qualification.setHitJustification(response.getQualification().getHitJustification());
+                qualification.setIdentification(response.getQualification().getIdentification());
+                qualification.setHitRelevancy(response.getQualification().getHitRelevancy());
+                qualification.setJustification(response.getQualification().getJustification());
+                qualification.setMateriality(response.getQualification().getMateriality());
+                qualification.setOtherReason(response.getQualification().getOtherReason());
+                qualification.setReason(reasonList);
+            }
+            //qualification2.setReason(response.getQualification());
+
+            msg = KafkaResponseAvro.newBuilder()
+                    .setCaseId(response.getCaseId())
+                    .setPersonId(response.getPersonId())
+                    .setRiskcheckId(response.getRiskCheckId())
+                    .setScreeningHitId(response.getScreeningHitId())
+                    .setHitUrl(response.getHitUrl())
+                    .setHitId(response.getHitId())
+                    .setRmLocation("2")
+                    .setBookingCentre("Hong Kong")
+                    .setErrorString(response.getErrorString())
+                    .setRawContent(response.getRawContent())
+                    .setGenAiSummary(response.getGenAiSummary())
+                    .setIsQualificationGenerated(response.getIsQualificationGenerated())
+                    .setIsSummaryGenerated(response.getIsSummaryGenerated())
+                    .setQualification(qualification)
+                    .build();
+        }
+        publisher.sendGenAISchemaToTopic(topicName,msg);
+        return "Success";
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.dbs.service;
 
-import com.imtf.dbs.namescreening.common.kafka.schema.GenAiResponseRecord;
+import com.dbs.clconnbc.api.model.KafkaResponseAvro;
+import com.imtf.dbs.namescreening.common.kafka.schemaold.GenAiResponseRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -74,6 +75,21 @@ public class KafkaMessagePublisher {
 
 
     public void sendTestGenAISchemaToTopic(String topicName, GenAiResponseRecord message){
+        CompletableFuture<SendResult<String, Object>> future = template.send(topicName, message);
+        future.whenComplete((result,ex)->{
+            if (ex == null) {
+                System.out.println("Sent Serialized message=[" + message +
+                        "] with offset=[" + result.getRecordMetadata().offset() + "]" +"to topic "+ topicName);
+            } else {
+                System.out.println("Unable to send message=[" +
+                        message + "] due to : " + ex.getMessage());
+            }
+        });
+
+    }
+
+
+    public void sendGenAISchemaToTopic(String topicName, KafkaResponseAvro message){
         CompletableFuture<SendResult<String, Object>> future = template.send(topicName, message);
         future.whenComplete((result,ex)->{
             if (ex == null) {
