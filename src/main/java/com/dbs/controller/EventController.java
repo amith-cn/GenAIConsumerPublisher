@@ -1,6 +1,9 @@
 package com.dbs.controller;
 
-import com.dbs.clconnbc.api.model.KafkaRequestAvro;
+import com.dbs.clconnbc.additionalNameapi.model.AdditionalNameResponseAvro;
+import com.dbs.clconnbc.additionalNameapi.model.AdditionalNamesAvro;
+import com.dbs.clconnbc.api.model.GenAiNameIdentificationRequestMsg;
+import com.dbs.clconnbc.api.model.GenAiNameIdentificationResponseMsg;
 import com.dbs.clconnbc.api.model.KafkaResponseAvro;
 import com.dbs.clconnbc.api.model.QualificationAvro;
 import com.dbs.model.GenAiResponse;
@@ -14,7 +17,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/producer-app")
@@ -177,6 +182,7 @@ public class EventController {
                     .setHitId(response.getHitId())
                     .setGenAiSummary(response.getGenAiSummary())
                     .setErrorString(response.getErrorString())
+                    .setRawContent(response.getRawContent())
                     .setIsQualificationGenerated(response.getIsQualificationGenerated())
                     .setIsSummaryGenerated(response.getIsSummaryGenerated())
                     .setQualification(qualification2)
@@ -207,7 +213,7 @@ public class EventController {
         }
 
         KafkaResponseAvro msg = null;
-        if(response.getHitUrl()==null){
+        if(response.getErrorString()!=null){
             msg = KafkaResponseAvro.newBuilder()
                     .setCaseId(response.getCaseId())
                     .setPersonId(response.getPersonId())
@@ -215,12 +221,14 @@ public class EventController {
                     .setScreeningHitId(response.getScreeningHitId())
                     .setHitId(response.getHitId())
                     .setHitUrl(response.getHitUrl())
+                    .setRmLocation("2")
+                    .setBookingCentre("Hong Kong")
                     .setErrorString(response.getErrorString())
                     .build();
         }
         else {
             QualificationAvro qualification= new QualificationAvro();
-            if(response.getQualification()!=null && response.getIsQualificationGenerated()) {
+            if(response.getQualification()!=null ) {
                 List<String> reason = response.getQualification().getReason();
                 List<CharSequence> reasonList = new ArrayList<>();
                 if(reason!=null) {
@@ -254,6 +262,65 @@ public class EventController {
                     .build();
         }
         publisher.sendGenAISchemaToTopic(topicName,msg);
+        //publisher.sendMsg(topicName,response.getScreeningHitId(),msg);
+        return "Success";
+    }
+
+
+    @PostMapping(value = "/{topicName}/publishAsBytes")
+    public String sendGenAISchemaMessage(@PathVariable String topicName,@RequestBody GenAiNameIdentificationResponseMsg response) throws Exception {
+
+        /*GenAiNameIdentificationResponseMsg payload = new GenAiNameIdentificationResponseMsg();
+        payload.setCaseId(response.getCaseId()); // Y2FzZXM6Ly9jYXNlcy9lMGFlYjFhMy0yY2E0LTQ1Y2UtYWNmNS00ZjA4ZjFhZWIyMzg caseOid
+        // cases://cases/e0aeb1a3-2ca4-45ce-acf5-4f08f1aeb238"
+        payload.setPersonId(response.getPersonId()); // 73444b71-5eee-470f-9ff2-76d09b8bb933
+        payload.setPersonId(response.getPersonId()); // swaroop
+        //payload.setEntityType(response.getEntityType());
+
+       List<GenAiNameIdentificationResponseMsg.AdditionalName> additionalNames=response.getAdditionalNames();
+
+       for(GenAiNameIdentificationResponseMsg.AdditionalName additionalName:additionalNames) {
+           additionalName.getName();
+
+       }*/
+
+        // familyBackground,additionalRelatedNames
+        // AKANames,aliazingNames,remarks-> why its needed
+        // fetch all required EntityTypes based on NP/LP
+        // add Source of Wealth extra parameters in next phase
+
+        /*AdditionalNameResponseAvro msg = new AdditionalNameResponseAvro();
+        msg.setCaseId(response.getCaseId());
+        msg.setPersonId(response.getPersonId());
+        msg.setCorrelationId(response.getCorrelationId());
+        msg.setOriginator(response.getOriginator());*/
+        List<AdditionalNamesAvro> namesAvros = new ArrayList();
+
+        for (GenAiNameIdentificationResponseMsg.AdditionalName additionalName : response.getAdditionalNames()) {
+               AdditionalNamesAvro avro= new AdditionalNamesAvro();
+               avro.setName(additionalName.getName());
+               avro.setType(additionalName.getType());
+               avro.setScreening(additionalName.getScreening());
+               avro.setRelationshipWithBO(additionalName.getRelationshipWithBO());
+               avro.setBO(additionalName.getBO());
+               avro.setByGenAI(additionalName.isByGenAI());
+               namesAvros.add(avro);
+         }
+        //msg.setAdditionalNames(namesAvros);
+        //msg.setErrorString(response.getErrorString());
+
+       List avros= namesAvros.stream().collect(Collectors.toList());
+        AdditionalNameResponseAvro avroMsg = AdditionalNameResponseAvro.newBuilder().
+                setCaseId(response.getCaseId()).
+                setPersonId(response.getPersonId()).
+                setCorrelationId(response.getCorrelationId()).
+                setOriginator(response.getOriginator()).
+                setAdditionalNames(avros).
+                setErrorString(response.getErrorString()).build();
+
+        System.out.println("payload is"+ avroMsg);
+        publisher.sendAdditionalMsg(topicName,avroMsg);
+        //publisher.sendMsg(topicName,response.getPersonId(), response);
         return "Success";
     }
 
