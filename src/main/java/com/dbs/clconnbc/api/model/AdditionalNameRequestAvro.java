@@ -3,20 +3,20 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package com.dbs.clconnbc.additionalNameapi.model;
+package com.dbs.clconnbc.api.model;
 
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.SchemaStore;
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.util.Utf8;
+import org.apache.avro.message.BinaryMessageEncoder;
+import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AdditionalNameRequestAvro extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -6032532973779488438L;
+  private static final long serialVersionUID = -4301917693722148055L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AdditionalNameRequestAvro\",\"namespace\":\"com.dbs.clconnbc.additionalNameapi.model\",\"fields\":[{\"name\":\"caseId\",\"type\":\"string\"},{\"name\":\"personId\",\"type\":\"string\"},{\"name\":\"correlationId\",\"type\":\"string\"},{\"name\":\"originator\",\"type\":\"string\"},{\"name\":\"rmLocation\",\"type\":\"string\"},{\"name\":\"bookingCentre\",\"type\":\"string\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"familyBackground\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"remarks\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"additionalRelatedNames\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"AKANames\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"aliazingNames\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"SOW\",\"type\":{\"type\":\"record\",\"name\":\"SOWAvro\",\"fields\":[{\"name\":\"employment\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"EmploymentAvro\",\"fields\":[{\"name\":\"employerName\",\"type\":\"string\"},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":\"string\"}]}},\"default\":[]},{\"name\":\"business\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"BusinessAvro\",\"fields\":[{\"name\":\"businessName\",\"type\":\"string\"},{\"name\":\"elaborateOnClientBusiness\",\"type\":\"string\"}]}},\"default\":[]},{\"name\":\"investment\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"InvestmentAvro\",\"fields\":[{\"name\":\"investmentType\",\"type\":\"string\"},{\"name\":\"sourceOfWealth\",\"type\":\"string\"},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":\"string\"}]}},\"default\":[]},{\"name\":\"property\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"PropertyAvro\",\"fields\":[{\"name\":\"propertyType\",\"type\":\"string\"},{\"name\":\"sourceOfWealth\",\"type\":\"string\"},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":\"string\"}]}},\"default\":[]},{\"name\":\"inheritance\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"InheritanceAvro\",\"fields\":[{\"name\":\"giftorName\",\"type\":\"string\"},{\"name\":\"sourceOfWealthOfGiftor\",\"type\":\"string\"},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":\"string\"}]}},\"default\":[]},{\"name\":\"otherSOW\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OtherSOWAvro\",\"fields\":[{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":\"string\"}]}},\"default\":[]}]}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AdditionalNameRequestAvro\",\"namespace\":\"com.dbs.clconnbc.api.model\",\"fields\":[{\"name\":\"caseId\",\"type\":\"string\"},{\"name\":\"personId\",\"type\":\"string\"},{\"name\":\"correlationId\",\"type\":\"string\"},{\"name\":\"originator\",\"type\":\"string\"},{\"name\":\"rmLocation\",\"type\":\"string\"},{\"name\":\"bookingCentre\",\"type\":\"string\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"familyBackground\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"remarks\",\"type\":{\"type\":\"array\",\"items\":\"string\"},\"default\":[]},{\"name\":\"additionalRelatedNames\",\"type\":{\"type\":\"array\",\"items\":\"string\"},\"default\":[]},{\"name\":\"AKANames\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"aliazingNames\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"SOW\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"SOWAvro\",\"fields\":[{\"name\":\"employment\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"EmploymentAvro\",\"fields\":[{\"name\":\"employerName\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null}]}},\"default\":[]},{\"name\":\"business\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"BusinessAvro\",\"fields\":[{\"name\":\"businessName\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"elaborateOnClientBusiness\",\"type\":[\"null\",\"string\"],\"default\":null}]}},\"default\":[]},{\"name\":\"investment\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"InvestmentAvro\",\"fields\":[{\"name\":\"investmentType\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"sourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null}]}},\"default\":[]},{\"name\":\"property\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"PropertyAvro\",\"fields\":[{\"name\":\"propertyType\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"sourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null}]}},\"default\":[]},{\"name\":\"inheritance\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"InheritanceAvro\",\"fields\":[{\"name\":\"giftorName\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"sourceOfWealthOfGiftor\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null}]}},\"default\":[]},{\"name\":\"otherSOW\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OtherSOWAvro\",\"fields\":[{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null}]}},\"default\":[]}]}],\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -1259,7 +1259,13 @@ public class AdditionalNameRequestAvro extends org.apache.avro.specific.Specific
       out.writeString(this.aliazingNames);
     }
 
-    this.SOW.customEncode(out);
+    if (this.SOW == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      this.SOW.customEncode(out);
+    }
 
   }
 
@@ -1333,10 +1339,15 @@ public class AdditionalNameRequestAvro extends org.apache.avro.specific.Specific
         this.aliazingNames = in.readString(this.aliazingNames instanceof Utf8 ? (Utf8)this.aliazingNames : null);
       }
 
-      if (this.SOW == null) {
-        this.SOW = new SOWAvro();
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.SOW = null;
+      } else {
+        if (this.SOW == null) {
+          this.SOW = new SOWAvro();
+        }
+        this.SOW.customDecode(in);
       }
-      this.SOW.customDecode(in);
 
     } else {
       for (int i = 0; i < 13; i++) {
@@ -1431,10 +1442,15 @@ public class AdditionalNameRequestAvro extends org.apache.avro.specific.Specific
           break;
 
         case 12:
-          if (this.SOW == null) {
-            this.SOW = new SOWAvro();
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.SOW = null;
+          } else {
+            if (this.SOW == null) {
+              this.SOW = new SOWAvro();
+            }
+            this.SOW.customDecode(in);
           }
-          this.SOW.customDecode(in);
           break;
 
         default:

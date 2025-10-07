@@ -1,7 +1,7 @@
 package com.dbs.service;
 
-import com.dbs.clconnbc.additionalNameapi.model.AdditionalNameResponseAvro;
-import com.dbs.clconnbc.additionalNameapi.model.AdditionalNamesAvro;
+import com.dbs.clconnbc.api.model.AdditionalNameResponseAvro;
+import com.dbs.clconnbc.api.model.AdditionalNamesAvro;
 import com.dbs.clconnbc.api.model.GenAiNameIdentificationRequestMsg;
 import com.dbs.clconnbc.api.model.GenAiNameIdentificationResponseMsg;
 import com.dbs.clconnbc.api.model.KafkaResponseAvro;

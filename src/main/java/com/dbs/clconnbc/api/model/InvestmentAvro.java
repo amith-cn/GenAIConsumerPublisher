@@ -3,20 +3,20 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package com.dbs.clconnbc.additionalNameapi.model;
+package com.dbs.clconnbc.api.model;
 
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.SchemaStore;
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.util.Utf8;
+import org.apache.avro.message.BinaryMessageEncoder;
+import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class InvestmentAvro extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 6964940206854124289L;
+  private static final long serialVersionUID = -7830436299098219596L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"InvestmentAvro\",\"namespace\":\"com.dbs.clconnbc.additionalNameapi.model\",\"fields\":[{\"name\":\"investmentType\",\"type\":\"string\"},{\"name\":\"sourceOfWealth\",\"type\":\"string\"},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":\"string\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"InvestmentAvro\",\"namespace\":\"com.dbs.clconnbc.api.model\",\"fields\":[{\"name\":\"investmentType\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"sourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -425,11 +425,29 @@ public class InvestmentAvro extends org.apache.avro.specific.SpecificRecordBase 
   @Override public void customEncode(org.apache.avro.io.Encoder out)
     throws java.io.IOException
   {
-    out.writeString(this.investmentType);
+    if (this.investmentType == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeString(this.investmentType);
+    }
 
-    out.writeString(this.sourceOfWealth);
+    if (this.sourceOfWealth == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeString(this.sourceOfWealth);
+    }
 
-    out.writeString(this.pleaseElaborateOnSourceOfWealth);
+    if (this.pleaseElaborateOnSourceOfWealth == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeString(this.pleaseElaborateOnSourceOfWealth);
+    }
 
   }
 
@@ -438,25 +456,55 @@ public class InvestmentAvro extends org.apache.avro.specific.SpecificRecordBase 
   {
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
-      this.investmentType = in.readString(this.investmentType instanceof Utf8 ? (Utf8)this.investmentType : null);
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.investmentType = null;
+      } else {
+        this.investmentType = in.readString(this.investmentType instanceof Utf8 ? (Utf8)this.investmentType : null);
+      }
 
-      this.sourceOfWealth = in.readString(this.sourceOfWealth instanceof Utf8 ? (Utf8)this.sourceOfWealth : null);
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.sourceOfWealth = null;
+      } else {
+        this.sourceOfWealth = in.readString(this.sourceOfWealth instanceof Utf8 ? (Utf8)this.sourceOfWealth : null);
+      }
 
-      this.pleaseElaborateOnSourceOfWealth = in.readString(this.pleaseElaborateOnSourceOfWealth instanceof Utf8 ? (Utf8)this.pleaseElaborateOnSourceOfWealth : null);
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.pleaseElaborateOnSourceOfWealth = null;
+      } else {
+        this.pleaseElaborateOnSourceOfWealth = in.readString(this.pleaseElaborateOnSourceOfWealth instanceof Utf8 ? (Utf8)this.pleaseElaborateOnSourceOfWealth : null);
+      }
 
     } else {
       for (int i = 0; i < 3; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
-          this.investmentType = in.readString(this.investmentType instanceof Utf8 ? (Utf8)this.investmentType : null);
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.investmentType = null;
+          } else {
+            this.investmentType = in.readString(this.investmentType instanceof Utf8 ? (Utf8)this.investmentType : null);
+          }
           break;
 
         case 1:
-          this.sourceOfWealth = in.readString(this.sourceOfWealth instanceof Utf8 ? (Utf8)this.sourceOfWealth : null);
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.sourceOfWealth = null;
+          } else {
+            this.sourceOfWealth = in.readString(this.sourceOfWealth instanceof Utf8 ? (Utf8)this.sourceOfWealth : null);
+          }
           break;
 
         case 2:
-          this.pleaseElaborateOnSourceOfWealth = in.readString(this.pleaseElaborateOnSourceOfWealth instanceof Utf8 ? (Utf8)this.pleaseElaborateOnSourceOfWealth : null);
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.pleaseElaborateOnSourceOfWealth = null;
+          } else {
+            this.pleaseElaborateOnSourceOfWealth = in.readString(this.pleaseElaborateOnSourceOfWealth instanceof Utf8 ? (Utf8)this.pleaseElaborateOnSourceOfWealth : null);
+          }
           break;
 
         default:

@@ -3,20 +3,20 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package com.dbs.clconnbc.additionalNameapi.model;
+package com.dbs.clconnbc.api.model;
 
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.SchemaStore;
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.util.Utf8;
+import org.apache.avro.message.BinaryMessageEncoder;
+import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AdditionalNamesAvro extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -2313328148148810097L;
+  private static final long serialVersionUID = 746511785624166499L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AdditionalNamesAvro\",\"namespace\":\"com.dbs.clconnbc.additionalNameapi.model\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"type\",\"type\":\"string\"},{\"name\":\"screening\",\"type\":\"string\"},{\"name\":\"relationshipWithBO\",\"type\":\"string\"},{\"name\":\"BO\",\"type\":\"string\"},{\"name\":\"byGenAI\",\"type\":\"boolean\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AdditionalNamesAvro\",\"namespace\":\"com.dbs.clconnbc.api.model\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"type\",\"type\":\"string\"},{\"name\":\"screening\",\"type\":\"string\"},{\"name\":\"relationshipWithBO\",\"type\":\"string\"},{\"name\":\"BO\",\"type\":\"string\"},{\"name\":\"byGenAI\",\"type\":\"boolean\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();

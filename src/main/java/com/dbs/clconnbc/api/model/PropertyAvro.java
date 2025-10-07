@@ -3,35 +3,35 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package com.dbs.clconnbc.additionalNameapi.model;
+package com.dbs.clconnbc.api.model;
 
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.SchemaStore;
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.util.Utf8;
+import org.apache.avro.message.BinaryMessageEncoder;
+import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
-public class InheritanceAvro extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -7274398615356711606L;
+public class PropertyAvro extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
+  private static final long serialVersionUID = 4091927821994608736L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"InheritanceAvro\",\"namespace\":\"com.dbs.clconnbc.additionalNameapi.model\",\"fields\":[{\"name\":\"giftorName\",\"type\":\"string\"},{\"name\":\"sourceOfWealthOfGiftor\",\"type\":\"string\"},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":\"string\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PropertyAvro\",\"namespace\":\"com.dbs.clconnbc.api.model\",\"fields\":[{\"name\":\"propertyType\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"sourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
 
-  private static final BinaryMessageEncoder<InheritanceAvro> ENCODER =
+  private static final BinaryMessageEncoder<PropertyAvro> ENCODER =
       new BinaryMessageEncoder<>(MODEL$, SCHEMA$);
 
-  private static final BinaryMessageDecoder<InheritanceAvro> DECODER =
+  private static final BinaryMessageDecoder<PropertyAvro> DECODER =
       new BinaryMessageDecoder<>(MODEL$, SCHEMA$);
 
   /**
    * Return the BinaryMessageEncoder instance used by this class.
    * @return the message encoder used by this class
    */
-  public static BinaryMessageEncoder<InheritanceAvro> getEncoder() {
+  public static BinaryMessageEncoder<PropertyAvro> getEncoder() {
     return ENCODER;
   }
 
@@ -39,7 +39,7 @@ public class InheritanceAvro extends org.apache.avro.specific.SpecificRecordBase
    * Return the BinaryMessageDecoder instance used by this class.
    * @return the message decoder used by this class
    */
-  public static BinaryMessageDecoder<InheritanceAvro> getDecoder() {
+  public static BinaryMessageDecoder<PropertyAvro> getDecoder() {
     return DECODER;
   }
 
@@ -48,12 +48,12 @@ public class InheritanceAvro extends org.apache.avro.specific.SpecificRecordBase
    * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
    * @return a BinaryMessageDecoder instance for this class backed by the given SchemaStore
    */
-  public static BinaryMessageDecoder<InheritanceAvro> createDecoder(SchemaStore resolver) {
+  public static BinaryMessageDecoder<PropertyAvro> createDecoder(SchemaStore resolver) {
     return new BinaryMessageDecoder<>(MODEL$, SCHEMA$, resolver);
   }
 
   /**
-   * Serializes this InheritanceAvro to a ByteBuffer.
+   * Serializes this PropertyAvro to a ByteBuffer.
    * @return a buffer holding the serialized data for this instance
    * @throws java.io.IOException if this instance could not be serialized
    */
@@ -62,18 +62,18 @@ public class InheritanceAvro extends org.apache.avro.specific.SpecificRecordBase
   }
 
   /**
-   * Deserializes a InheritanceAvro from a ByteBuffer.
+   * Deserializes a PropertyAvro from a ByteBuffer.
    * @param b a byte buffer holding serialized data for an instance of this class
-   * @return a InheritanceAvro instance decoded from the given buffer
+   * @return a PropertyAvro instance decoded from the given buffer
    * @throws java.io.IOException if the given bytes could not be deserialized into an instance of this class
    */
-  public static InheritanceAvro fromByteBuffer(
+  public static PropertyAvro fromByteBuffer(
       java.nio.ByteBuffer b) throws java.io.IOException {
     return DECODER.decode(b);
   }
 
-  private CharSequence giftorName;
-  private CharSequence sourceOfWealthOfGiftor;
+  private CharSequence propertyType;
+  private CharSequence sourceOfWealth;
   private CharSequence pleaseElaborateOnSourceOfWealth;
 
   /**
@@ -81,17 +81,17 @@ public class InheritanceAvro extends org.apache.avro.specific.SpecificRecordBase
    * to their default values from the schema.  If that is desired then
    * one should use <code>newBuilder()</code>.
    */
-  public InheritanceAvro() {}
+  public PropertyAvro() {}
 
   /**
    * All-args constructor.
-   * @param giftorName The new value for giftorName
-   * @param sourceOfWealthOfGiftor The new value for sourceOfWealthOfGiftor
+   * @param propertyType The new value for propertyType
+   * @param sourceOfWealth The new value for sourceOfWealth
    * @param pleaseElaborateOnSourceOfWealth The new value for pleaseElaborateOnSourceOfWealth
    */
-  public InheritanceAvro(CharSequence giftorName, CharSequence sourceOfWealthOfGiftor, CharSequence pleaseElaborateOnSourceOfWealth) {
-    this.giftorName = giftorName;
-    this.sourceOfWealthOfGiftor = sourceOfWealthOfGiftor;
+  public PropertyAvro(CharSequence propertyType, CharSequence sourceOfWealth, CharSequence pleaseElaborateOnSourceOfWealth) {
+    this.propertyType = propertyType;
+    this.sourceOfWealth = sourceOfWealth;
     this.pleaseElaborateOnSourceOfWealth = pleaseElaborateOnSourceOfWealth;
   }
 
@@ -105,8 +105,8 @@ public class InheritanceAvro extends org.apache.avro.specific.SpecificRecordBase
   @Override
   public Object get(int field$) {
     switch (field$) {
-    case 0: return giftorName;
-    case 1: return sourceOfWealthOfGiftor;
+    case 0: return propertyType;
+    case 1: return sourceOfWealth;
     case 2: return pleaseElaborateOnSourceOfWealth;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
@@ -117,45 +117,45 @@ public class InheritanceAvro extends org.apache.avro.specific.SpecificRecordBase
   @SuppressWarnings(value="unchecked")
   public void put(int field$, Object value$) {
     switch (field$) {
-    case 0: giftorName = (CharSequence)value$; break;
-    case 1: sourceOfWealthOfGiftor = (CharSequence)value$; break;
+    case 0: propertyType = (CharSequence)value$; break;
+    case 1: sourceOfWealth = (CharSequence)value$; break;
     case 2: pleaseElaborateOnSourceOfWealth = (CharSequence)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
 
   /**
-   * Gets the value of the 'giftorName' field.
-   * @return The value of the 'giftorName' field.
+   * Gets the value of the 'propertyType' field.
+   * @return The value of the 'propertyType' field.
    */
-  public CharSequence getGiftorName() {
-    return giftorName;
+  public CharSequence getPropertyType() {
+    return propertyType;
   }
 
 
   /**
-   * Sets the value of the 'giftorName' field.
+   * Sets the value of the 'propertyType' field.
    * @param value the value to set.
    */
-  public void setGiftorName(CharSequence value) {
-    this.giftorName = value;
+  public void setPropertyType(CharSequence value) {
+    this.propertyType = value;
   }
 
   /**
-   * Gets the value of the 'sourceOfWealthOfGiftor' field.
-   * @return The value of the 'sourceOfWealthOfGiftor' field.
+   * Gets the value of the 'sourceOfWealth' field.
+   * @return The value of the 'sourceOfWealth' field.
    */
-  public CharSequence getSourceOfWealthOfGiftor() {
-    return sourceOfWealthOfGiftor;
+  public CharSequence getSourceOfWealth() {
+    return sourceOfWealth;
   }
 
 
   /**
-   * Sets the value of the 'sourceOfWealthOfGiftor' field.
+   * Sets the value of the 'sourceOfWealth' field.
    * @param value the value to set.
    */
-  public void setSourceOfWealthOfGiftor(CharSequence value) {
-    this.sourceOfWealthOfGiftor = value;
+  public void setSourceOfWealth(CharSequence value) {
+    this.sourceOfWealth = value;
   }
 
   /**
@@ -176,17 +176,17 @@ public class InheritanceAvro extends org.apache.avro.specific.SpecificRecordBase
   }
 
   /**
-   * Creates a new InheritanceAvro RecordBuilder.
-   * @return A new InheritanceAvro RecordBuilder
+   * Creates a new PropertyAvro RecordBuilder.
+   * @return A new PropertyAvro RecordBuilder
    */
   public static Builder newBuilder() {
     return new Builder();
   }
 
   /**
-   * Creates a new InheritanceAvro RecordBuilder by copying an existing Builder.
+   * Creates a new PropertyAvro RecordBuilder by copying an existing Builder.
    * @param other The existing builder to copy.
-   * @return A new InheritanceAvro RecordBuilder
+   * @return A new PropertyAvro RecordBuilder
    */
   public static Builder newBuilder(Builder other) {
     if (other == null) {
@@ -197,11 +197,11 @@ public class InheritanceAvro extends org.apache.avro.specific.SpecificRecordBase
   }
 
   /**
-   * Creates a new InheritanceAvro RecordBuilder by copying an existing InheritanceAvro instance.
+   * Creates a new PropertyAvro RecordBuilder by copying an existing PropertyAvro instance.
    * @param other The existing instance to copy.
-   * @return A new InheritanceAvro RecordBuilder
+   * @return A new PropertyAvro RecordBuilder
    */
-  public static Builder newBuilder(InheritanceAvro other) {
+  public static Builder newBuilder(PropertyAvro other) {
     if (other == null) {
       return new Builder();
     } else {
@@ -210,14 +210,14 @@ public class InheritanceAvro extends org.apache.avro.specific.SpecificRecordBase
   }
 
   /**
-   * RecordBuilder for InheritanceAvro instances.
+   * RecordBuilder for PropertyAvro instances.
    */
   @org.apache.avro.specific.AvroGenerated
-  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<InheritanceAvro>
-    implements org.apache.avro.data.RecordBuilder<InheritanceAvro> {
+  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<PropertyAvro>
+    implements org.apache.avro.data.RecordBuilder<PropertyAvro> {
 
-    private CharSequence giftorName;
-    private CharSequence sourceOfWealthOfGiftor;
+    private CharSequence propertyType;
+    private CharSequence sourceOfWealth;
     private CharSequence pleaseElaborateOnSourceOfWealth;
 
     /** Creates a new Builder */
@@ -231,12 +231,12 @@ public class InheritanceAvro extends org.apache.avro.specific.SpecificRecordBase
      */
     private Builder(Builder other) {
       super(other);
-      if (isValidValue(fields()[0], other.giftorName)) {
-        this.giftorName = data().deepCopy(fields()[0].schema(), other.giftorName);
+      if (isValidValue(fields()[0], other.propertyType)) {
+        this.propertyType = data().deepCopy(fields()[0].schema(), other.propertyType);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
-      if (isValidValue(fields()[1], other.sourceOfWealthOfGiftor)) {
-        this.sourceOfWealthOfGiftor = data().deepCopy(fields()[1].schema(), other.sourceOfWealthOfGiftor);
+      if (isValidValue(fields()[1], other.sourceOfWealth)) {
+        this.sourceOfWealth = data().deepCopy(fields()[1].schema(), other.sourceOfWealth);
         fieldSetFlags()[1] = other.fieldSetFlags()[1];
       }
       if (isValidValue(fields()[2], other.pleaseElaborateOnSourceOfWealth)) {
@@ -246,17 +246,17 @@ public class InheritanceAvro extends org.apache.avro.specific.SpecificRecordBase
     }
 
     /**
-     * Creates a Builder by copying an existing InheritanceAvro instance
+     * Creates a Builder by copying an existing PropertyAvro instance
      * @param other The existing instance to copy.
      */
-    private Builder(InheritanceAvro other) {
+    private Builder(PropertyAvro other) {
       super(SCHEMA$, MODEL$);
-      if (isValidValue(fields()[0], other.giftorName)) {
-        this.giftorName = data().deepCopy(fields()[0].schema(), other.giftorName);
+      if (isValidValue(fields()[0], other.propertyType)) {
+        this.propertyType = data().deepCopy(fields()[0].schema(), other.propertyType);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.sourceOfWealthOfGiftor)) {
-        this.sourceOfWealthOfGiftor = data().deepCopy(fields()[1].schema(), other.sourceOfWealthOfGiftor);
+      if (isValidValue(fields()[1], other.sourceOfWealth)) {
+        this.sourceOfWealth = data().deepCopy(fields()[1].schema(), other.sourceOfWealth);
         fieldSetFlags()[1] = true;
       }
       if (isValidValue(fields()[2], other.pleaseElaborateOnSourceOfWealth)) {
@@ -266,81 +266,81 @@ public class InheritanceAvro extends org.apache.avro.specific.SpecificRecordBase
     }
 
     /**
-      * Gets the value of the 'giftorName' field.
+      * Gets the value of the 'propertyType' field.
       * @return The value.
       */
-    public CharSequence getGiftorName() {
-      return giftorName;
+    public CharSequence getPropertyType() {
+      return propertyType;
     }
 
 
     /**
-      * Sets the value of the 'giftorName' field.
-      * @param value The value of 'giftorName'.
+      * Sets the value of the 'propertyType' field.
+      * @param value The value of 'propertyType'.
       * @return This builder.
       */
-    public Builder setGiftorName(CharSequence value) {
+    public Builder setPropertyType(CharSequence value) {
       validate(fields()[0], value);
-      this.giftorName = value;
+      this.propertyType = value;
       fieldSetFlags()[0] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'giftorName' field has been set.
-      * @return True if the 'giftorName' field has been set, false otherwise.
+      * Checks whether the 'propertyType' field has been set.
+      * @return True if the 'propertyType' field has been set, false otherwise.
       */
-    public boolean hasGiftorName() {
+    public boolean hasPropertyType() {
       return fieldSetFlags()[0];
     }
 
 
     /**
-      * Clears the value of the 'giftorName' field.
+      * Clears the value of the 'propertyType' field.
       * @return This builder.
       */
-    public Builder clearGiftorName() {
-      giftorName = null;
+    public Builder clearPropertyType() {
+      propertyType = null;
       fieldSetFlags()[0] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'sourceOfWealthOfGiftor' field.
+      * Gets the value of the 'sourceOfWealth' field.
       * @return The value.
       */
-    public CharSequence getSourceOfWealthOfGiftor() {
-      return sourceOfWealthOfGiftor;
+    public CharSequence getSourceOfWealth() {
+      return sourceOfWealth;
     }
 
 
     /**
-      * Sets the value of the 'sourceOfWealthOfGiftor' field.
-      * @param value The value of 'sourceOfWealthOfGiftor'.
+      * Sets the value of the 'sourceOfWealth' field.
+      * @param value The value of 'sourceOfWealth'.
       * @return This builder.
       */
-    public Builder setSourceOfWealthOfGiftor(CharSequence value) {
+    public Builder setSourceOfWealth(CharSequence value) {
       validate(fields()[1], value);
-      this.sourceOfWealthOfGiftor = value;
+      this.sourceOfWealth = value;
       fieldSetFlags()[1] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'sourceOfWealthOfGiftor' field has been set.
-      * @return True if the 'sourceOfWealthOfGiftor' field has been set, false otherwise.
+      * Checks whether the 'sourceOfWealth' field has been set.
+      * @return True if the 'sourceOfWealth' field has been set, false otherwise.
       */
-    public boolean hasSourceOfWealthOfGiftor() {
+    public boolean hasSourceOfWealth() {
       return fieldSetFlags()[1];
     }
 
 
     /**
-      * Clears the value of the 'sourceOfWealthOfGiftor' field.
+      * Clears the value of the 'sourceOfWealth' field.
       * @return This builder.
       */
-    public Builder clearSourceOfWealthOfGiftor() {
-      sourceOfWealthOfGiftor = null;
+    public Builder clearSourceOfWealth() {
+      sourceOfWealth = null;
       fieldSetFlags()[1] = false;
       return this;
     }
@@ -387,11 +387,11 @@ public class InheritanceAvro extends org.apache.avro.specific.SpecificRecordBase
 
     @Override
     @SuppressWarnings("unchecked")
-    public InheritanceAvro build() {
+    public PropertyAvro build() {
       try {
-        InheritanceAvro record = new InheritanceAvro();
-        record.giftorName = fieldSetFlags()[0] ? this.giftorName : (CharSequence) defaultValue(fields()[0]);
-        record.sourceOfWealthOfGiftor = fieldSetFlags()[1] ? this.sourceOfWealthOfGiftor : (CharSequence) defaultValue(fields()[1]);
+        PropertyAvro record = new PropertyAvro();
+        record.propertyType = fieldSetFlags()[0] ? this.propertyType : (CharSequence) defaultValue(fields()[0]);
+        record.sourceOfWealth = fieldSetFlags()[1] ? this.sourceOfWealth : (CharSequence) defaultValue(fields()[1]);
         record.pleaseElaborateOnSourceOfWealth = fieldSetFlags()[2] ? this.pleaseElaborateOnSourceOfWealth : (CharSequence) defaultValue(fields()[2]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
@@ -403,8 +403,8 @@ public class InheritanceAvro extends org.apache.avro.specific.SpecificRecordBase
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<InheritanceAvro>
-    WRITER$ = (org.apache.avro.io.DatumWriter<InheritanceAvro>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter<PropertyAvro>
+    WRITER$ = (org.apache.avro.io.DatumWriter<PropertyAvro>)MODEL$.createDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
@@ -412,8 +412,8 @@ public class InheritanceAvro extends org.apache.avro.specific.SpecificRecordBase
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<InheritanceAvro>
-    READER$ = (org.apache.avro.io.DatumReader<InheritanceAvro>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader<PropertyAvro>
+    READER$ = (org.apache.avro.io.DatumReader<PropertyAvro>)MODEL$.createDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {
@@ -425,11 +425,29 @@ public class InheritanceAvro extends org.apache.avro.specific.SpecificRecordBase
   @Override public void customEncode(org.apache.avro.io.Encoder out)
     throws java.io.IOException
   {
-    out.writeString(this.giftorName);
+    if (this.propertyType == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeString(this.propertyType);
+    }
 
-    out.writeString(this.sourceOfWealthOfGiftor);
+    if (this.sourceOfWealth == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeString(this.sourceOfWealth);
+    }
 
-    out.writeString(this.pleaseElaborateOnSourceOfWealth);
+    if (this.pleaseElaborateOnSourceOfWealth == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeString(this.pleaseElaborateOnSourceOfWealth);
+    }
 
   }
 
@@ -438,25 +456,55 @@ public class InheritanceAvro extends org.apache.avro.specific.SpecificRecordBase
   {
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
-      this.giftorName = in.readString(this.giftorName instanceof Utf8 ? (Utf8)this.giftorName : null);
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.propertyType = null;
+      } else {
+        this.propertyType = in.readString(this.propertyType instanceof Utf8 ? (Utf8)this.propertyType : null);
+      }
 
-      this.sourceOfWealthOfGiftor = in.readString(this.sourceOfWealthOfGiftor instanceof Utf8 ? (Utf8)this.sourceOfWealthOfGiftor : null);
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.sourceOfWealth = null;
+      } else {
+        this.sourceOfWealth = in.readString(this.sourceOfWealth instanceof Utf8 ? (Utf8)this.sourceOfWealth : null);
+      }
 
-      this.pleaseElaborateOnSourceOfWealth = in.readString(this.pleaseElaborateOnSourceOfWealth instanceof Utf8 ? (Utf8)this.pleaseElaborateOnSourceOfWealth : null);
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.pleaseElaborateOnSourceOfWealth = null;
+      } else {
+        this.pleaseElaborateOnSourceOfWealth = in.readString(this.pleaseElaborateOnSourceOfWealth instanceof Utf8 ? (Utf8)this.pleaseElaborateOnSourceOfWealth : null);
+      }
 
     } else {
       for (int i = 0; i < 3; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
-          this.giftorName = in.readString(this.giftorName instanceof Utf8 ? (Utf8)this.giftorName : null);
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.propertyType = null;
+          } else {
+            this.propertyType = in.readString(this.propertyType instanceof Utf8 ? (Utf8)this.propertyType : null);
+          }
           break;
 
         case 1:
-          this.sourceOfWealthOfGiftor = in.readString(this.sourceOfWealthOfGiftor instanceof Utf8 ? (Utf8)this.sourceOfWealthOfGiftor : null);
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.sourceOfWealth = null;
+          } else {
+            this.sourceOfWealth = in.readString(this.sourceOfWealth instanceof Utf8 ? (Utf8)this.sourceOfWealth : null);
+          }
           break;
 
         case 2:
-          this.pleaseElaborateOnSourceOfWealth = in.readString(this.pleaseElaborateOnSourceOfWealth instanceof Utf8 ? (Utf8)this.pleaseElaborateOnSourceOfWealth : null);
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.pleaseElaborateOnSourceOfWealth = null;
+          } else {
+            this.pleaseElaborateOnSourceOfWealth = in.readString(this.pleaseElaborateOnSourceOfWealth instanceof Utf8 ? (Utf8)this.pleaseElaborateOnSourceOfWealth : null);
+          }
           break;
 
         default:

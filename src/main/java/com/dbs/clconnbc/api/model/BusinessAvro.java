@@ -3,20 +3,20 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package com.dbs.clconnbc.additionalNameapi.model;
+package com.dbs.clconnbc.api.model;
 
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.SchemaStore;
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.util.Utf8;
+import org.apache.avro.message.BinaryMessageEncoder;
+import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class BusinessAvro extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -310418522787049993L;
+  private static final long serialVersionUID = 4093990443623866661L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"BusinessAvro\",\"namespace\":\"com.dbs.clconnbc.additionalNameapi.model\",\"fields\":[{\"name\":\"businessName\",\"type\":\"string\"},{\"name\":\"elaborateOnClientBusiness\",\"type\":\"string\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"BusinessAvro\",\"namespace\":\"com.dbs.clconnbc.api.model\",\"fields\":[{\"name\":\"businessName\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"elaborateOnClientBusiness\",\"type\":[\"null\",\"string\"],\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -353,9 +353,21 @@ public class BusinessAvro extends org.apache.avro.specific.SpecificRecordBase im
   @Override public void customEncode(org.apache.avro.io.Encoder out)
     throws java.io.IOException
   {
-    out.writeString(this.businessName);
+    if (this.businessName == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeString(this.businessName);
+    }
 
-    out.writeString(this.elaborateOnClientBusiness);
+    if (this.elaborateOnClientBusiness == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeString(this.elaborateOnClientBusiness);
+    }
 
   }
 
@@ -364,19 +376,39 @@ public class BusinessAvro extends org.apache.avro.specific.SpecificRecordBase im
   {
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
-      this.businessName = in.readString(this.businessName instanceof Utf8 ? (Utf8)this.businessName : null);
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.businessName = null;
+      } else {
+        this.businessName = in.readString(this.businessName instanceof Utf8 ? (Utf8)this.businessName : null);
+      }
 
-      this.elaborateOnClientBusiness = in.readString(this.elaborateOnClientBusiness instanceof Utf8 ? (Utf8)this.elaborateOnClientBusiness : null);
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.elaborateOnClientBusiness = null;
+      } else {
+        this.elaborateOnClientBusiness = in.readString(this.elaborateOnClientBusiness instanceof Utf8 ? (Utf8)this.elaborateOnClientBusiness : null);
+      }
 
     } else {
       for (int i = 0; i < 2; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
-          this.businessName = in.readString(this.businessName instanceof Utf8 ? (Utf8)this.businessName : null);
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.businessName = null;
+          } else {
+            this.businessName = in.readString(this.businessName instanceof Utf8 ? (Utf8)this.businessName : null);
+          }
           break;
 
         case 1:
-          this.elaborateOnClientBusiness = in.readString(this.elaborateOnClientBusiness instanceof Utf8 ? (Utf8)this.elaborateOnClientBusiness : null);
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.elaborateOnClientBusiness = null;
+          } else {
+            this.elaborateOnClientBusiness = in.readString(this.elaborateOnClientBusiness instanceof Utf8 ? (Utf8)this.elaborateOnClientBusiness : null);
+          }
           break;
 
         default:

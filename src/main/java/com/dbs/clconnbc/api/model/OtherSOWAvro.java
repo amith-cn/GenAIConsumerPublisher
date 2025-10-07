@@ -3,20 +3,20 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package com.dbs.clconnbc.additionalNameapi.model;
+package com.dbs.clconnbc.api.model;
 
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.SchemaStore;
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.util.Utf8;
+import org.apache.avro.message.BinaryMessageEncoder;
+import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class OtherSOWAvro extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -2788348094533640693L;
+  private static final long serialVersionUID = -1343254386380043262L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"OtherSOWAvro\",\"namespace\":\"com.dbs.clconnbc.additionalNameapi.model\",\"fields\":[{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":\"string\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"OtherSOWAvro\",\"namespace\":\"com.dbs.clconnbc.api.model\",\"fields\":[{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -281,7 +281,13 @@ public class OtherSOWAvro extends org.apache.avro.specific.SpecificRecordBase im
   @Override public void customEncode(org.apache.avro.io.Encoder out)
     throws java.io.IOException
   {
-    out.writeString(this.pleaseElaborateOnSourceOfWealth);
+    if (this.pleaseElaborateOnSourceOfWealth == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeString(this.pleaseElaborateOnSourceOfWealth);
+    }
 
   }
 
@@ -290,13 +296,23 @@ public class OtherSOWAvro extends org.apache.avro.specific.SpecificRecordBase im
   {
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
-      this.pleaseElaborateOnSourceOfWealth = in.readString(this.pleaseElaborateOnSourceOfWealth instanceof Utf8 ? (Utf8)this.pleaseElaborateOnSourceOfWealth : null);
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.pleaseElaborateOnSourceOfWealth = null;
+      } else {
+        this.pleaseElaborateOnSourceOfWealth = in.readString(this.pleaseElaborateOnSourceOfWealth instanceof Utf8 ? (Utf8)this.pleaseElaborateOnSourceOfWealth : null);
+      }
 
     } else {
       for (int i = 0; i < 1; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
-          this.pleaseElaborateOnSourceOfWealth = in.readString(this.pleaseElaborateOnSourceOfWealth instanceof Utf8 ? (Utf8)this.pleaseElaborateOnSourceOfWealth : null);
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.pleaseElaborateOnSourceOfWealth = null;
+          } else {
+            this.pleaseElaborateOnSourceOfWealth = in.readString(this.pleaseElaborateOnSourceOfWealth instanceof Utf8 ? (Utf8)this.pleaseElaborateOnSourceOfWealth : null);
+          }
           break;
 
         default:

@@ -3,20 +3,20 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package com.dbs.clconnbc.additionalNameapi.model;
+package com.dbs.clconnbc.api.model;
 
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.SchemaStore;
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.util.Utf8;
+import org.apache.avro.message.BinaryMessageEncoder;
+import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class EmploymentAvro extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 6123802282936448245L;
+  private static final long serialVersionUID = -3871972546121701745L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"EmploymentAvro\",\"namespace\":\"com.dbs.clconnbc.additionalNameapi.model\",\"fields\":[{\"name\":\"employerName\",\"type\":\"string\"},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":\"string\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"EmploymentAvro\",\"namespace\":\"com.dbs.clconnbc.api.model\",\"fields\":[{\"name\":\"employerName\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -353,9 +353,21 @@ public class EmploymentAvro extends org.apache.avro.specific.SpecificRecordBase 
   @Override public void customEncode(org.apache.avro.io.Encoder out)
     throws java.io.IOException
   {
-    out.writeString(this.employerName);
+    if (this.employerName == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeString(this.employerName);
+    }
 
-    out.writeString(this.pleaseElaborateOnSourceOfWealth);
+    if (this.pleaseElaborateOnSourceOfWealth == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeString(this.pleaseElaborateOnSourceOfWealth);
+    }
 
   }
 
@@ -364,19 +376,39 @@ public class EmploymentAvro extends org.apache.avro.specific.SpecificRecordBase 
   {
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
-      this.employerName = in.readString(this.employerName instanceof Utf8 ? (Utf8)this.employerName : null);
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.employerName = null;
+      } else {
+        this.employerName = in.readString(this.employerName instanceof Utf8 ? (Utf8)this.employerName : null);
+      }
 
-      this.pleaseElaborateOnSourceOfWealth = in.readString(this.pleaseElaborateOnSourceOfWealth instanceof Utf8 ? (Utf8)this.pleaseElaborateOnSourceOfWealth : null);
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.pleaseElaborateOnSourceOfWealth = null;
+      } else {
+        this.pleaseElaborateOnSourceOfWealth = in.readString(this.pleaseElaborateOnSourceOfWealth instanceof Utf8 ? (Utf8)this.pleaseElaborateOnSourceOfWealth : null);
+      }
 
     } else {
       for (int i = 0; i < 2; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
-          this.employerName = in.readString(this.employerName instanceof Utf8 ? (Utf8)this.employerName : null);
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.employerName = null;
+          } else {
+            this.employerName = in.readString(this.employerName instanceof Utf8 ? (Utf8)this.employerName : null);
+          }
           break;
 
         case 1:
-          this.pleaseElaborateOnSourceOfWealth = in.readString(this.pleaseElaborateOnSourceOfWealth instanceof Utf8 ? (Utf8)this.pleaseElaborateOnSourceOfWealth : null);
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.pleaseElaborateOnSourceOfWealth = null;
+          } else {
+            this.pleaseElaborateOnSourceOfWealth = in.readString(this.pleaseElaborateOnSourceOfWealth instanceof Utf8 ? (Utf8)this.pleaseElaborateOnSourceOfWealth : null);
+          }
           break;
 
         default:

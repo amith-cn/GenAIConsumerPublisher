@@ -3,20 +3,20 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package com.dbs.clconnbc.additionalNameapi.model;
+package com.dbs.clconnbc.api.model;
 
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.SchemaStore;
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.util.Utf8;
+import org.apache.avro.message.BinaryMessageEncoder;
+import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AdditionalNameResponseAvro extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 3933547335434886454L;
+  private static final long serialVersionUID = 8725124071711997429L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AdditionalNameResponseAvro\",\"namespace\":\"com.dbs.clconnbc.additionalNameapi.model\",\"fields\":[{\"name\":\"caseId\",\"type\":\"string\"},{\"name\":\"personId\",\"type\":\"string\"},{\"name\":\"correlationId\",\"type\":\"string\"},{\"name\":\"originator\",\"type\":\"string\"},{\"name\":\"additionalNames\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"AdditionalNamesAvro\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"type\",\"type\":\"string\"},{\"name\":\"screening\",\"type\":\"string\"},{\"name\":\"relationshipWithBO\",\"type\":\"string\"},{\"name\":\"BO\",\"type\":\"string\"},{\"name\":\"byGenAI\",\"type\":\"boolean\"}]}}},{\"name\":\"errorString\",\"type\":\"string\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AdditionalNameResponseAvro\",\"namespace\":\"com.dbs.clconnbc.api.model\",\"fields\":[{\"name\":\"caseId\",\"type\":\"string\"},{\"name\":\"personId\",\"type\":\"string\"},{\"name\":\"correlationId\",\"type\":\"string\"},{\"name\":\"originator\",\"type\":\"string\"},{\"name\":\"additionalNames\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"AdditionalNamesAvro\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"type\",\"type\":\"string\"},{\"name\":\"screening\",\"type\":\"string\"},{\"name\":\"relationshipWithBO\",\"type\":\"string\"},{\"name\":\"BO\",\"type\":\"string\"},{\"name\":\"byGenAI\",\"type\":\"boolean\"}]}}},{\"name\":\"errorString\",\"type\":[\"null\",\"string\"],\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -662,7 +662,13 @@ public class AdditionalNameResponseAvro extends org.apache.avro.specific.Specifi
     if (actualSize0 != size0)
       throw new java.util.ConcurrentModificationException("Array-size written was " + size0 + ", but element count was " + actualSize0 + ".");
 
-    out.writeString(this.errorString);
+    if (this.errorString == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeString(this.errorString);
+    }
 
   }
 
@@ -697,7 +703,12 @@ public class AdditionalNameResponseAvro extends org.apache.avro.specific.Specifi
         }
       }
 
-      this.errorString = in.readString(this.errorString instanceof Utf8 ? (Utf8)this.errorString : null);
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.errorString = null;
+      } else {
+        this.errorString = in.readString(this.errorString instanceof Utf8 ? (Utf8)this.errorString : null);
+      }
 
     } else {
       for (int i = 0; i < 6; i++) {
@@ -739,7 +750,12 @@ public class AdditionalNameResponseAvro extends org.apache.avro.specific.Specifi
           break;
 
         case 5:
-          this.errorString = in.readString(this.errorString instanceof Utf8 ? (Utf8)this.errorString : null);
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.errorString = null;
+          } else {
+            this.errorString = in.readString(this.errorString instanceof Utf8 ? (Utf8)this.errorString : null);
+          }
           break;
 
         default:

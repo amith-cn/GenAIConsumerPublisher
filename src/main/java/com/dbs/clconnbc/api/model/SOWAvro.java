@@ -3,19 +3,20 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package com.dbs.clconnbc.additionalNameapi.model;
+package com.dbs.clconnbc.api.model;
 
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.SchemaStore;
 import org.apache.avro.specific.SpecificData;
+import org.apache.avro.util.Utf8;
+import org.apache.avro.message.BinaryMessageEncoder;
+import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class SOWAvro extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 6537355988275731484L;
+  private static final long serialVersionUID = 2769928708343823125L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"SOWAvro\",\"namespace\":\"com.dbs.clconnbc.additionalNameapi.model\",\"fields\":[{\"name\":\"employment\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"EmploymentAvro\",\"fields\":[{\"name\":\"employerName\",\"type\":\"string\"},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":\"string\"}]}},\"default\":[]},{\"name\":\"business\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"BusinessAvro\",\"fields\":[{\"name\":\"businessName\",\"type\":\"string\"},{\"name\":\"elaborateOnClientBusiness\",\"type\":\"string\"}]}},\"default\":[]},{\"name\":\"investment\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"InvestmentAvro\",\"fields\":[{\"name\":\"investmentType\",\"type\":\"string\"},{\"name\":\"sourceOfWealth\",\"type\":\"string\"},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":\"string\"}]}},\"default\":[]},{\"name\":\"property\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"PropertyAvro\",\"fields\":[{\"name\":\"propertyType\",\"type\":\"string\"},{\"name\":\"sourceOfWealth\",\"type\":\"string\"},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":\"string\"}]}},\"default\":[]},{\"name\":\"inheritance\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"InheritanceAvro\",\"fields\":[{\"name\":\"giftorName\",\"type\":\"string\"},{\"name\":\"sourceOfWealthOfGiftor\",\"type\":\"string\"},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":\"string\"}]}},\"default\":[]},{\"name\":\"otherSOW\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OtherSOWAvro\",\"fields\":[{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":\"string\"}]}},\"default\":[]}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"SOWAvro\",\"namespace\":\"com.dbs.clconnbc.api.model\",\"fields\":[{\"name\":\"employment\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"EmploymentAvro\",\"fields\":[{\"name\":\"employerName\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null}]}},\"default\":[]},{\"name\":\"business\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"BusinessAvro\",\"fields\":[{\"name\":\"businessName\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"elaborateOnClientBusiness\",\"type\":[\"null\",\"string\"],\"default\":null}]}},\"default\":[]},{\"name\":\"investment\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"InvestmentAvro\",\"fields\":[{\"name\":\"investmentType\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"sourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null}]}},\"default\":[]},{\"name\":\"property\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"PropertyAvro\",\"fields\":[{\"name\":\"propertyType\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"sourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null}]}},\"default\":[]},{\"name\":\"inheritance\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"InheritanceAvro\",\"fields\":[{\"name\":\"giftorName\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"sourceOfWealthOfGiftor\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null}]}},\"default\":[]},{\"name\":\"otherSOW\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OtherSOWAvro\",\"fields\":[{\"name\":\"pleaseElaborateOnSourceOfWealth\",\"type\":[\"null\",\"string\"],\"default\":null}]}},\"default\":[]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
