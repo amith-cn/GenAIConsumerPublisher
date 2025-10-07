@@ -41,65 +41,6 @@ public class KafkaMessagePublisher {
     private KafkaTemplate<String, Object> byteKafkaTemplate;
 
 
-    /*//recive all the message and
-    public void sendMessageToTopic(String message){
-        CompletableFuture<SendResult<String, Object>> future = template.send("topicB", message);
-        future.whenComplete((result,ex)->{
-            if (ex == null) {
-                System.out.println("Sent message=[" + message +
-                        "] with offset=[" + result.getRecordMetadata().offset() + "]");
-            } else {
-                System.out.println("Unable to send message=[" +
-                        message + "] due to : " + ex.getMessage());
-            }
-        });
-
-    }
-
-
-    public void sendGenAIMessageToTopic(com.dbs.model.GenAiResponse message){
-        CompletableFuture<SendResult<String, Object>> future = template.send("GenAIResponseFindItTopic", message);
-        future.whenComplete((result,ex)->{
-            if (ex == null) {
-                System.out.println("Sent message=[" + message +
-                        "] with offset=[" + result.getRecordMetadata().offset() + "]");
-            } else {
-                System.out.println("Unable to send message=[" +
-                        message + "] due to : " + ex.getMessage());
-            }
-        });
-
-    }
-
-    public void sendGenAIMessageToTopic(String topicName,com.dbs.model.GenAiResponse message){
-        CompletableFuture<SendResult<String, Object>> future = template.send(topicName, message);
-        future.whenComplete((result,ex)->{
-            if (ex == null) {
-                System.out.println("Sent message=[" + message +
-                        "] with offset=[" + result.getRecordMetadata().offset() + "]");
-            } else {
-                System.out.println("Unable to send message=[" +
-                        message + "] due to : " + ex.getMessage());
-            }
-        });
-
-    }
-
-    public void sendGenAISchemaToTopic(String topicName, GenAiResponseRecord message){
-        CompletableFuture<SendResult<String, Object>> future = template.send(topicName, message);
-        future.whenComplete((result,ex)->{
-            if (ex == null) {
-                System.out.println("Sent Serialized message=[" + message +
-                        "] with offset=[" + result.getRecordMetadata().offset() + "]" +"to topic "+ topicName);
-            } else {
-                System.out.println("Unable to send message=[" +
-                        message + "] due to : " + ex.getMessage());
-            }
-        });
-
-    }*/
-
-
     public void sendTestGenAISchemaToTopic(String topicName, GenAiResponseRecord message){
         CompletableFuture<SendResult<String, Object>> future = template.send(topicName, message);
         future.whenComplete((result,ex)->{
@@ -131,10 +72,6 @@ public class KafkaMessagePublisher {
 
 
     public void sendAdditionalMsg(String topic, AdditionalNameResponseAvro payload) throws Exception {
-       /* SpecificDatumWriter<AdditionalNameResponseAvro> writer =
-                new SpecificDatumWriter<>(AdditionalNameResponseAvro.class);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        BinaryEncoder encoder = EncoderFactory.get().binaryEncoder(out, null);*/
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         BinaryEncoder encoder = EncoderFactory.get().binaryEncoder(out, null);
@@ -144,12 +81,9 @@ public class KafkaMessagePublisher {
 
         byte[] avroBytes = out.toByteArray();
 
-
         writer.write(payload, encoder);
         encoder.flush();
 
-      //  byte[] avroBytes = out.toByteArray();
-        //producer.send(new ProducerRecord<>(topic, avroBytes));
         if (avroBytes != null) {
             CompletableFuture<SendResult<String, Object>> future = byteKafkaTemplate.send(topic, avroBytes);
             future.whenComplete((result,ex)->{
